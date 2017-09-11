@@ -1,0 +1,5 @@
+前三天：vue、vue-resource、vue-router、vuex（可选）+UI框架（elementUI、mintUI） SUI（淘宝团队出品）
+
+脚手架（vue-cli），集成了webpack（包含打包编译、热更新）、node、vue路由、vuex等功能
+
+后面2~3天做一个基于vue脚手架的vue项目，之后就可以往简历添加关于vue的技术点、项目经验。
