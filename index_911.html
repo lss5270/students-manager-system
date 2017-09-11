@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- 假如引入的第三方库是需要依赖它的，必须放上面， 例如jq、vue库 -->
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<!-- <div id="js_id">hehe</div> -->
+
+	<script type="text/javascript">
+	// 	var aa =  $('#js_id').html()
+	// 	console.log(aa)
+	</script>
+	
+	{{ message }} //这一行，没有在vue的el绑定的作用域范围内，故不能使用任何vue语法。
+	等价于<span v-text="message"></span>
+	<div id="app">
+	  	{{ message }}  <br />
+	  	<span v-text="message"></span>
+	  	<p>
+	  		姓名：{{ name }} <br />
+	  		性别：{{sex}} <br />
+	  		年龄：{{ age+100 }} <br />
+	  	</p>
+	  	<p>
+	  		姓名：{{ userInfo.name }} <br />  //对象通过'.'取值
+	  		性别：{{userInfo.sex}} <br />
+	  	</p>
+	  	<div v-html="html5">
+	  		<!-- {{{ html }}} vue1.0写法 -->
+	  	</div>
+		
+		vue中通过@click调用methods中的方法。@click是v-on:click的缩写<br/>
+		<button @click="alertFun(userInfo.name)">这是按钮！</button>
+
+		<p v-on:click="alertFun(1)">这是段落……</p>
+
+		<div>
+			组件：<br/>
+			<my-component></my-component>
+			<br/>
+			<my2 />
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// alertFun('张三');
+		// function alertFun(name){
+  // 			alert('hehe,'+name+'你被点击了！')
+  // 		}
+
+  		//组件。组件使用之前必须先注册后使用，注册又分为：全局注册、局部注册。
+  		//组件的使用是：直接在html中置入<组件名></组件名>也可以简写<组件名/>
+
+  		//1.组件全局注册使用Vue.component('组件名,{template:'<p></p>'})，例如
+  		//2.组件局部注册要在vue实例中使用components
+  		Vue.component('my-component', {
+  		  template: '<div style="color: red">这是全局注册的组件内容……!</div>'
+  		})
+  		//定义一个变量叫Child2来保存这个组件模板
+  		var Child2 = {
+  		  template: '<div style="color: blue">这是局部注册的组件内容!</div>'
+  		}
+		//实例化一个vue实例，然后使用app来存着这个实例
+		var app = new Vue({
+			  el: '#app',	//el就是element元素，表示vue实例的作用于范围
+			  data: {		// data是定义vue实例内的数据。内部的属性名可自定义，属性值可以是任何的js数据类型
+			    message: 'Hello Vue!',
+			    name: '张三',
+			    sex: '男',
+			    age:18,
+			    isStudents: false,
+			    userInfo:{
+			    	name: '李四',
+			    	sex: '女',
+			    },
+			    studentsName:['小明','小红','小猪'],
+			    'html5': '<p style="color: blue">这是蓝色的字体</p>'
+			  },
+			  methods:{	//vue实例的方法集 ,对象中可以自定义N个方法，然后html中通过@click调用
+			  		alertFun: function(name){
+			  			alert('hehe,'+name+'你被点击了！')
+			  		},
+			  		myFun(){}
+			  },
+			  components:{	//vue实例的组件集合（局部注册）
+			  		// <my-component> 将只在父模板可用
+			  		//左侧的是属性名，也是所谓的组件名
+			  		    'my2': Child2
+			  }
+
+		})
+
+		console.log()
+	</script>
+
+
+	
+</body>
+</html>
