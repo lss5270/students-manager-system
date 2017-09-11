@@ -1,0 +1,10 @@
+1.完成注册和登录
+
+2.点击头像——your profile -- Repositories -- new -- Repository name（存储库、项目名）-- 勾上Initialize  README
+
+3.点击Upload files，把需要上传的文件拖动到上传区域，然后提交
+
+4.回到项目主页--点击setting--找到github pages（source）--选择master branch --save 
+
+5.再次找到github pages，下面多一个地址，直接复制地址打开即可。
+           
